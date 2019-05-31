@@ -16,9 +16,9 @@ func index(w http.ResponseWriter, r *http.Request) {
 
 	var content string
 	if feature == "true" {
-		content = "/content/index.html"
-	} else {
 		content = "/content/newFeature.html"
+	} else {
+		content = "/content/index.html"
 	}
 
 	data, err := ioutil.ReadFile(content)
