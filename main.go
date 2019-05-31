@@ -13,8 +13,8 @@ func index(w http.ResponseWriter, r *http.Request) {
 	fmt.Printf("Handling %+v\n", r)
 
 	feature := os.Getenv("NEW_FEATURE")
-
 	var content string
+
 	if feature == "true" {
 		content = "/content/newFeature.html"
 	} else {
@@ -24,7 +24,7 @@ func index(w http.ResponseWriter, r *http.Request) {
 	data, err := ioutil.ReadFile(content)
 
 	if err != nil {
-		fmt.Printf("Couldn't read index.html: %v", err)
+		fmt.Printf("Couldn't read content: %v", err)
 		os.Exit(1)
 	}
 
@@ -35,5 +35,9 @@ func main() {
 	http.HandleFunc("/", index)
 	port := ":8000"
 	fmt.Printf("Starting to service on port %s\n", port)
+
+	feature := os.Getenv("NEW_FEATURE")
+	fmt.Printf("NEW_FEATURE enabled: %s", feature)
+
 	http.ListenAndServe(port, nil)
 }
